@@ -1,0 +1,33 @@
+﻿<Page x:Class="ThePriceIsAName.RotatableAndScalablePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:ThePriceIsAName"
+        MouseDown="Page_PreviewMouseDown"
+        MouseUp="Page_PreviewMouseUp"
+        MouseWheel="Page_PreviewMouseWheel"
+        Title="RotatableAndScalablePage">
+    <Page.Resources>
+        <l:SplitTransform x:Key="SplitTransform"/>
+    </Page.Resources>
+    <Grid>
+        <Slider Name="ScalarSlider" Value="1" Visibility="Collapsed"/>
+        <Slider Name="RotationSlider" Value="0" Visibility="Collapsed"/>
+        <Frame Name="World" Source="TranslatablePage.xaml" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Frame.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform 
+                        x:Name="Rotate"
+                        CenterX="{Binding ElementName=Application, Path=Width, Converter={StaticResource SplitTransform}}" 
+                        CenterY="{Binding ElementName=Application, Path=Height, Converter={StaticResource SplitTransform}}"
+                        Angle="{Binding ElementName=RotationSlider, Path=Value}" />
+                    <ScaleTransform 
+                        x:Name="Scalar"
+                        CenterX="{Binding ElementName=Application, Path=Width, Converter={StaticResource SplitTransform}}" 
+                        CenterY="{Binding ElementName=Application, Path=Height, Converter={StaticResource SplitTransform}}" 
+                        ScaleX="{Binding ElementName=ScalarSlider, Path=Value}" 
+                        ScaleY="{Binding ElementName=ScalarSlider, Path=Value}"/>
+                </TransformGroup>
+            </Frame.LayoutTransform>
+        </Frame>
+    </Grid>
+</Page>

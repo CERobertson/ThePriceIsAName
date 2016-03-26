@@ -37,8 +37,6 @@
             var dimensionMetadata = new FrameworkPropertyMetadata(OnDimensionChanged);
             var radiusMetadata = new FrameworkPropertyMetadata();
 
-            radiusMetadata.DefaultValue = 200.0;
-
             ResolutionProperty = DependencyProperty.Register("Resolution", typeof(double), typeof(PolarMultiplicationCanvas), resolutionMetadata);
             DimensionProperty = DependencyProperty.Register("Dimension", typeof(double), typeof(PolarMultiplicationCanvas), dimensionMetadata);
             RadiusProperty = DependencyProperty.Register("Radius", typeof(double), typeof(PolarMultiplicationCanvas), radiusMetadata);
@@ -61,7 +59,7 @@
             dimensionAnimation.From = 0;
             dimensionAnimation.To = 200;
             dimensionAnimation.AutoReverse = true;
-            dimensionAnimation.Duration = TimeSpan.FromSeconds(200);
+            dimensionAnimation.Duration = TimeSpan.FromHours(1);
             this.BeginAnimation(PolarMultiplicationCanvas.DimensionProperty, dimensionAnimation);
         }
         public PolarMultiplicationCanvas()
@@ -77,8 +75,10 @@
 
             DrawingVisual visual;
             var center = new Point(this.Width / 2, this.Height / 2);
+            //var center2 = new Point((this.Width / 2) + this.Radius, (this.Height / 2) + this.Radius);
             var background = Brushes.Transparent;
-            var pen = new Pen(Brushes.Black, 1);
+            var gradient = new LinearGradientBrush(Colors.DarkBlue, Colors.DarkMagenta, 45);
+            var pen = new Pen(gradient, 1);
 
             //Unit circle
             visual = new DrawingVisual();
