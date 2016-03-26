@@ -6,6 +6,6 @@
       xmlns:l="clr-namespace:ThePriceIsAName"
       Title="Multiplication along the circle">
     <Grid>
-        <l:PolarMultiplicationCanvas Height="400" Width="400" Radius="150" Resolution="300" />
+        <l:PolarMultiplicationCanvas Radius="150" Resolution="300" />
     </Grid>
 </Page>

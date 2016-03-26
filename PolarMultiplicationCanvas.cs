@@ -74,8 +74,10 @@
             this.ClearVisual();
 
             DrawingVisual visual;
-            var center = new Point(this.Width / 2, this.Height / 2);
+            
+            var center = new Point(0, 0);
             //var center2 = new Point((this.Width / 2) + this.Radius, (this.Height / 2) + this.Radius);
+
             var background = Brushes.Transparent;
             var gradient = new LinearGradientBrush(Colors.DarkBlue, Colors.DarkMagenta, 45);
             var pen = new Pen(gradient, 1);
@@ -107,7 +109,7 @@
         {
             var sides = (int)Math.Ceiling(this.Resolution);
             var length = (1 / Math.Ceiling(this.Resolution)) * Math.PI * 2;
-            var center = new Point(this.Width / 2, this.Height / 2);
+            var center = new Point(0, 0);
 
             this.HashCache = new Point[(sides)];
             for (int i = 0; i < this.Resolution; i++)
