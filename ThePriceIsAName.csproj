@@ -60,7 +60,6 @@
       <DependentUpon>RotatableAndScalablePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SplitTransform.cs" />
     <Compile Include="TranslatablePage.xaml.cs">
       <DependentUpon>TranslatablePage.xaml</DependentUpon>
       <SubType>Code</SubType>

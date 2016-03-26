@@ -6,9 +6,6 @@
         MouseUp="Page_PreviewMouseUp"
         MouseWheel="Page_PreviewMouseWheel"
         Title="RotatableAndScalablePage">
-    <Page.Resources>
-        <l:SplitTransform x:Key="SplitTransform"/>
-    </Page.Resources>
     <Grid>
         <Slider Name="ScalarSlider" Value="1" Visibility="Collapsed"/>
         <Slider Name="RotationSlider" Value="0" Visibility="Collapsed"/>
@@ -17,13 +14,9 @@
                 <TransformGroup>
                     <RotateTransform 
                         x:Name="Rotate"
-                        CenterX="{Binding ElementName=Application, Path=Width, Converter={StaticResource SplitTransform}}" 
-                        CenterY="{Binding ElementName=Application, Path=Height, Converter={StaticResource SplitTransform}}"
                         Angle="{Binding ElementName=RotationSlider, Path=Value}" />
                     <ScaleTransform 
-                        x:Name="Scalar"
-                        CenterX="{Binding ElementName=Application, Path=Width, Converter={StaticResource SplitTransform}}" 
-                        CenterY="{Binding ElementName=Application, Path=Height, Converter={StaticResource SplitTransform}}" 
+                        x:Name="Scalar" 
                         ScaleX="{Binding ElementName=ScalarSlider, Path=Value}" 
                         ScaleY="{Binding ElementName=ScalarSlider, Path=Value}"/>
                 </TransformGroup>
