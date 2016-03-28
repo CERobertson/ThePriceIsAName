@@ -6,7 +6,7 @@
     <Grid>
         <Slider Name="TranslateXSlider" Value="0" Visibility="Collapsed"/>
         <Slider Name="TranslateYSlider" Value="0" Visibility="Collapsed"/>
-        <Frame Name="TranslationFrame" Source="PolarMultiplicationPage.xaml">
+        <Frame Name="TranslationFrame" Source="ReticlePage.xaml">
             <Frame.RenderTransform>
                 <TranslateTransform 
                     x:Name="Translate"

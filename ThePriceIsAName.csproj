@@ -56,6 +56,10 @@
     <Compile Include="PolarMultiplicationPage.xaml.cs">
       <DependentUpon>PolarMultiplicationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReticleCanvas.cs" />
+    <Compile Include="ReticlePage.xaml.cs">
+      <DependentUpon>ReticlePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RotatableAndScalablePage.xaml.cs">
       <DependentUpon>RotatableAndScalablePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -65,6 +69,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PolarMultiplicationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReticlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
