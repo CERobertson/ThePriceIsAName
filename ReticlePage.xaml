@@ -7,6 +7,6 @@
 	Title="ReticlePage">
 
     <Grid>
-        <l:ReticleCanvas Radius="400" Dimension="6.0" Resolution="0" ClipToBounds="False"/>
+        <l:ReticleCanvas Radius="200" Dimension="4.0" Resolution="3.0" ClipToBounds="False"/>
     </Grid>
 </Page>

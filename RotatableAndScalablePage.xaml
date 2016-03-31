@@ -5,8 +5,10 @@
         MouseDown="Page_PreviewMouseDown"
         MouseUp="Page_PreviewMouseUp"
         MouseWheel="Page_PreviewMouseWheel"
-        Title="RotatableAndScalablePage">
+        Title="RotatableAndScalablePage"
+        ShowsNavigationUI="False">
     <Grid>
+        <TextBox>Adds window hit detection for mouse events.</TextBox>
         <Slider Name="ScalarSlider" Value="1" Visibility="Collapsed"/>
         <Slider Name="RotationSlider" Value="0" Visibility="Collapsed"/>
         <Frame Name="World" Source="TranslatablePage.xaml" VerticalAlignment="Center" HorizontalAlignment="Center">
