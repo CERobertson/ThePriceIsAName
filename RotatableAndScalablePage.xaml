@@ -8,10 +8,10 @@
         Title="RotatableAndScalablePage"
         ShowsNavigationUI="False">
     <Grid>
-        <TextBox>Adds window hit detection for mouse events.</TextBox>
+        <TextBox IsReadOnly="True">something</TextBox>
         <Slider Name="ScalarSlider" Value="1" Visibility="Collapsed"/>
         <Slider Name="RotationSlider" Value="0" Visibility="Collapsed"/>
-        <Frame Name="World" Source="TranslatablePage.xaml" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Frame Name="World" Source="PolarGridPage.xaml" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Frame.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform 

@@ -26,6 +26,11 @@
             get { return (double)GetValue(RadiusProperty); }
             set { SetValue(RadiusProperty, value); }
         }
+        public MeshGeometry3D Geometry
+        {
+            get { return (MeshGeometry3D)GetValue(GeometryProperty); }
+            set { SetValue(GeometryProperty, value); }
+        }
 
         #region Dependency properties for Resolution and Dimension intended for data binding and visual draw on change.
         public static readonly DependencyProperty ResolutionProperty;
@@ -35,18 +40,18 @@
 
         static ReticleCanvas()
         {
-            ReticleCanvas.GridGradient = new LinearGradientBrush(new GradientStopCollection(new[] { new GradientStop(Colors.DarkMagenta, 0.0), new GradientStop(Colors.DarkBlue, .25), new GradientStop(Colors.DarkMagenta, 0.75) }));
-            ReticleCanvas.MeshGradient = new LinearGradientBrush(new GradientStopCollection(new[] { new GradientStop(Colors.DarkSeaGreen, 0.0), new GradientStop(Colors.DarkGoldenrod, .25), new GradientStop(Colors.DarkSeaGreen, 0.75) }));
             var dimensionMetadata = new FrameworkPropertyMetadata(OnDimensionChanged);
             var resolutionMetadata = new FrameworkPropertyMetadata(OnResolutionChanged);
             var radiusMetadata = new FrameworkPropertyMetadata();
-            var geometryMetadata= new FrameworkPropertyMetadata();
+            var geometryMetadata = new FrameworkPropertyMetadata();
 
             ResolutionProperty = DependencyProperty.Register("Resolution", typeof(double), typeof(ReticleCanvas), resolutionMetadata);
             DimensionProperty = DependencyProperty.Register("Dimension", typeof(double), typeof(ReticleCanvas), dimensionMetadata);
             RadiusProperty = DependencyProperty.Register("Radius", typeof(double), typeof(ReticleCanvas), radiusMetadata);
-            GeometryProperty = DependencyProperty.Register("Geomertry", typeof(MeshGeometry3D), typeof(ReticleCanvas), geometryMetadata);
+            GeometryProperty = DependencyProperty.Register("Geometry", typeof(MeshGeometry3D), typeof(ReticleCanvas), geometryMetadata);
 
+            ReticleCanvas.GridGradient = new LinearGradientBrush(new GradientStopCollection(new[] { new GradientStop(Colors.DarkMagenta, 0.0), new GradientStop(Colors.DarkBlue, .25), new GradientStop(Colors.DarkMagenta, 0.75) }));
+            ReticleCanvas.MeshGradient = new LinearGradientBrush(new GradientStopCollection(new[] { new GradientStop(Colors.DarkSeaGreen, 0.0), new GradientStop(Colors.DarkGoldenrod, .25), new GradientStop(Colors.DarkSeaGreen, 0.75) }));
         }
         private static void OnResolutionChanged(DependencyObject d, DependencyPropertyChangedEventArgs args)
         {
@@ -56,6 +61,7 @@
         {
             ((ReticleCanvas)d).DrawCombined();
         }
+
         private void DrawingCanvas_Loaded(object sender, RoutedEventArgs e)
         {
             this.DrawCombined();
@@ -82,8 +88,6 @@
         private void DrawCombined()
         {
             this.ClearVisual();
-            this.Geometry.Positions.Clear();
-            this.Geometry.TriangleIndices.Clear();
 
             if (!this.populated)
             {
@@ -195,7 +199,6 @@
                 }
             }
         }
-        private MeshGeometry3D Geometry = new MeshGeometry3D();
 
         private bool populate_mesh_cache = false;
         private Point[][] ResolutionCache;
@@ -232,15 +235,33 @@
                 this.ResolutionCache = points;
                 this.populate_mesh_cache = true;
                 this.RefreshGeometry();
+                //this.MockGeometry();
             }
         }
+        private void MockGeometry()
+        {
+
+            var p1 = new Point3D(-1, 0, 0);
+            var p2 = new Point3D(0, 1, 0);
+            var p3 = new Point3D(1, 0, 0);
+            var m = new MeshGeometry3D();
+            m.Positions.Add(p1);
+            m.Positions.Add(p2);
+            m.Positions.Add(p3);
+            m.TriangleIndices.Add(0);
+            m.TriangleIndices.Add(2);
+            m.TriangleIndices.Add(1);
+            this.Geometry = m;
+        }
+
         private void RefreshGeometry()
         {
             var z = 0.0;
             var partition = 9;
+            this.Geometry = new MeshGeometry3D();
             this.Geometry.Positions.Clear();
             this.Geometry.TriangleIndices.Clear();
-            for (int i=0; i< this.ResolutionCache.Length; i++)
+            for (int i = 0; i < this.ResolutionCache.Length; i++)
             {
                 var partition_index = i * partition;
                 foreach (var j in this.ResolutionCache[i])

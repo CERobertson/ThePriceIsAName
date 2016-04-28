@@ -1,0 +1,19 @@
+﻿<Page x:Class="ThePriceIsAName.PolarGridPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ThePriceIsAName"
+    Title="PolarGridPage">
+    <Page.Resources>
+        <GeometryModel3D x:Key="Geometry" Geometry="{Binding ElementName=Grid, Path=Model}">
+            <GeometryModel3D.BackMaterial>
+                <DiffuseMaterial Brush="DarkRed" />
+            </GeometryModel3D.BackMaterial>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="DarkOrchid" />
+            </GeometryModel3D.Material>
+        </GeometryModel3D>
+    </Page.Resources>
+    <Grid>
+        <l:PolarGridCanvas x:Name="Grid" Radius="200" Theta="360" X="1" Y="0"/>
+    </Grid>
+</Page>
