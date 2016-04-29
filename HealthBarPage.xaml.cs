@@ -24,10 +24,14 @@ namespace ThePriceIsAName
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-            this.Hero.Subtract(15, new Actor { Color = new SolidColorBrush(Colors.Aqua) });
+            this.Hero.Add(11, new Actor { Color = new SolidColorBrush(Colors.LawnGreen) });
+        }
+
+        private void Subtract_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hero.Subtract(15, new Actor { Color = new SolidColorBrush(Colors.RosyBrown) });
         }
     }
 }

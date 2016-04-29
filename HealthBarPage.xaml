@@ -6,8 +6,9 @@
       xmlns:l="clr-namespace:ThePriceIsAName"
       Title="HealthBarPage">
 
-    <Grid>
+    <StackPanel>
         <l:HealthBar x:Name="Hero" Radius="150" Normal="100"/>
-        <Button Click="Button_Click">Subtract</Button> 
-    </Grid>
+        <Button Click="Add_Click">Add</Button>
+        <Button Click="Subtract_Click">Subtract</Button>
+    </StackPanel>
 </Page>
