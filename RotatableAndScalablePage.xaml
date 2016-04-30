@@ -8,10 +8,14 @@
         Title="RotatableAndScalablePage"
         ShowsNavigationUI="False">
     <Grid>
-        <TextBox IsReadOnly="True">something</TextBox>
+        <StackPanel>
+            <TextBlock><Hyperlink NavigateUri="PolarMultiplicationPage.xaml" TargetName="TranslationFrame">Polar Multiplication</Hyperlink></TextBlock>
+            <TextBlock><Hyperlink NavigateUri="ReticlePage.xaml" TargetName="TranslationFrame">Reticle</Hyperlink></TextBlock>
+            <TextBlock><Hyperlink NavigateUri="HealthBarPage.xaml" TargetName="TranslationFrame">Health Bar</Hyperlink></TextBlock>
+        </StackPanel>
         <Slider Name="ScalarSlider" Value="1" Visibility="Collapsed"/>
         <Slider Name="RotationSlider" Value="0" Visibility="Collapsed"/>
-        <Frame Name="World" Source="HealthBarPage.xaml" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Frame Name="World" Source="TranslatablePage.xaml" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Frame.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform 
