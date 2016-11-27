@@ -46,8 +46,23 @@
             Int32Animation frameAnimation = new Int32Animation();
             frameAnimation.From = 0;
             frameAnimation.To = Frames.Count + 1;
-            frameAnimation.Duration = TimeSpan.FromSeconds(30);
+            frameAnimation.Duration = TimeSpan.FromSeconds(5);
+            frameAnimation.Completed += FrameAnimation_Completed;
             this.BeginAnimation(SortingCanvas.FrameProperty, frameAnimation);
+            
+        }
+
+        private void FrameAnimation_Completed(object sender, EventArgs e) {
+            Draw(listA);
+            this.TestSort(listA);
+        }
+        private void TestSort(double[] list) {
+            var last = list[0];
+            foreach (var l in listA) {
+                if(last > l) {
+                    throw new Exception(string.Format("Sorting failed {0} should be less than or equal to {1}", last, l));
+                }
+            }
         }
 
         void TopDownSplitMerge(double[] B, int begin, int end, double[] A) {
