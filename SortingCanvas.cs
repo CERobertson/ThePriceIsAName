@@ -8,12 +8,89 @@
     using System.Windows.Media;
     using System.Windows.Media.Animation;
 
-    public class SortingCanvas : Canvas {
-        private const double delay = 0.0;
-        private const int list_length = 300;
-        private double[] listA = new double[list_length];
-        private double[] listB = new double[list_length];
-        private Random random = new Random();
+    public class TopDownMergeCanvas : SortingCanvas {
+        public TopDownMergeCanvas() 
+            : base() { }
+        protected override void Sort() {
+            TopDownSplitMerge(listB, 0, list_length, listA);
+        }
+        void TopDownSplitMerge(double[] B, int begin, int end, double[] A) {
+            if (end - begin < 2) {
+                return;
+            }
+            int middle = (end + begin) / 2;
+            TopDownSplitMerge(A, begin, middle, B);
+            TopDownSplitMerge(A, middle, end, B);
+            TopDownMerge(B, begin, middle, end, A);
+        }
+        void TopDownMerge(double[] A, int begin, int middle, int end, double[] B) {
+            int i = begin;
+            int j = middle;
+            for (int k = begin; k < end; k++) {
+                if (i < middle && (j >= end || A[i] <= A[j])) {
+                    B[k] = A[i];
+                    i = i + 1;
+                }
+                else {
+                    B[k] = A[j];
+                    j = j + 1;
+                    var frame = new Frame(list_length);
+                    B.CopyTo(frame.List, 0);
+                    Frames.Add(frame);
+                }
+            }
+            //attempt to get the animations looking nicer.
+            for (int k = begin; k < end; k++) {
+                A[k] = B[k];
+            }
+        }
+    }
+    public class BottomUpMergeCanvas : SortingCanvas {
+        public BottomUpMergeCanvas()
+            : base() { }
+        protected override void Sort() {
+            BottomUpMergeSort(listA, listB, list_length);
+        }
+        void BottomUpMergeSort(double[] A, double[] B, int n) {
+            double[] temp;
+            for (int width = 1; width < n; width = 2 * width) {
+                for (int i = 0; i < n; i = i + 2 * width) {
+                    BottomUpMerge(A, i, Math.Min(i + width, n), Math.Min(i + 2 * width, n), B);
+                }
+                temp = A;
+                A = B;
+                B = temp;
+            }
+        }
+        void BottomUpMerge(double[] A, int left, int right, int end, double[] B) {
+            int i = left;
+            int j = right;
+            for (int k = left; k < end; k++) {
+                if (i < right && (j >= end || A[i] <= A[j])) {
+                    B[k] = A[i];
+                    i = i + 1;
+                }
+                else {
+                    B[k] = A[j];
+                    j = j + 1;
+                }
+                var frame = new Frame(list_length);
+                B.CopyTo(frame.List, 0);
+                Frames.Add(frame);
+            }
+            //attempt to get the animations looking nicer.
+            for (int k = left; k < end; k++) {
+                A[k] = B[k];
+            }
+        }
+    }
+
+    public abstract class SortingCanvas : Canvas {
+        protected const double delay = 0.0;
+        protected const int list_length = 300;
+        protected double[] listA = new double[list_length];
+        protected double[] listB = new double[list_length];
+        protected Random random = new Random();
 
         public List<Frame> Frames = new List<Frame>();
         public int Frame {
@@ -40,8 +117,8 @@
                 listA[i] = random.NextDouble() * this.Height;
                 listB[i] = listA[i];
             }
-            TopDownSplitMerge(listB, 0, list_length, listA);
-            //MottomUpMergeSort(listA, listB, list_length);
+
+            Sort();
 
             Int32Animation frameAnimation = new Int32Animation();
             frameAnimation.From = 0;
@@ -51,7 +128,7 @@
             this.BeginAnimation(SortingCanvas.FrameProperty, frameAnimation);
             
         }
-
+        protected abstract void Sort();
         private void FrameAnimation_Completed(object sender, EventArgs e) {
             Draw(listA);
             this.TestSort(listA);
@@ -66,72 +143,6 @@
             }
         }
 
-        void TopDownSplitMerge(double[] B, int begin, int end, double[] A) {
-            if (end - begin < 2) {
-                return;
-            }
-            int middle = (end + begin) / 2;
-            TopDownSplitMerge(A, begin, middle, B);
-            TopDownSplitMerge(A, middle, end, B);
-            TopDownMerge(B, begin, middle, end, A);
-        }
-
-        void TopDownMerge(double[] A, int begin, int middle, int end, double[] B) {
-            int i = begin;
-            int j = middle;
-            for (int k = begin; k < end; k++) {
-                if (i < middle && (j >= end || A[i] <= A[j])) {
-                    B[k] = A[i];
-                    i = i + 1;
-                }
-                else {
-                    B[k] = A[j];
-                    j = j + 1;
-                    var frame = new Frame(list_length);
-                    B.CopyTo(frame.List, 0);
-                    Frames.Add(frame);
-                }
-            }
-            //attempt to get the animations looking nicer.
-            for (int k = begin; k < end; k++) {
-                A[k] = B[k];
-            }
-        }
-
-
-        void MottomUpMergeSort(double[] A, double[] B, int n) {
-            double[] temp;
-            for (int width = 1; width < n; width = 2 * width) {
-                for (int i = 0; i < n; i = i + 2 * width) {
-                    BottomUpMerge(A, i, Math.Min(i + width, n), Math.Min(i + 2 * width, n), B);
-                }
-                temp = A;
-                A = B;
-                B = temp;
-            }
-        }
-
-        void BottomUpMerge(double[] A, int left, int right, int end, double[] B) {
-            int i = left;
-            int j = right;
-            for (int k = left; k < end; k++) {
-                if (i < right && (j >= end || A[i] <= A[j])) {
-                    B[k] = A[i];
-                    i = i + 1;
-                }
-                else {
-                    B[k] = A[j];
-                    j = j + 1;
-                }
-                var frame = new Frame(list_length);
-                B.CopyTo(frame.List, 0);
-                Frames.Add(frame);
-            }
-            //attempt to get the animations looking nicer.
-            for (int k = left; k < end; k++) {
-                A[k] = B[k];
-            }
-        }
 
         public void Draw(double[] l) {
             double item_width = this.Width / list_length;
