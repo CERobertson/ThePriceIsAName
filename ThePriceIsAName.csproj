@@ -62,6 +62,10 @@
     <Compile Include="MeshGeometry3DExtensions.cs" />
     <Compile Include="PolarGridMesh.cs" />
     <Compile Include="ReversibleQuantityCanvas.cs" />
+    <Compile Include="SortingCanvas.cs" />
+    <Compile Include="SortingPage.xaml.cs">
+      <DependentUpon>SortingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Torus.cs" />
     <Compile Include="PolarGridCanvas.cs" />
     <Compile Include="PolarGridPage.xaml.cs">
@@ -101,6 +105,10 @@
     <Page Include="RotatableAndScalablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SortingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TranslatablePage.xaml">
       <Generator>MSBuild:Compile</Generator>

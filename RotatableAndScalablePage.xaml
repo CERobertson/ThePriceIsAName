@@ -12,6 +12,7 @@
             <TextBlock><Hyperlink NavigateUri="PolarMultiplicationPage.xaml" TargetName="TranslationFrame">Polar Multiplication</Hyperlink></TextBlock>
             <TextBlock><Hyperlink NavigateUri="ReticlePage.xaml" TargetName="TranslationFrame">Reticle</Hyperlink></TextBlock>
             <TextBlock><Hyperlink NavigateUri="HealthBarPage.xaml" TargetName="TranslationFrame">Health Bar</Hyperlink></TextBlock>
+            <TextBlock><Hyperlink NavigateUri="SortingPage.xaml" TargetName="TranslationFrame">Sorting Page</Hyperlink></TextBlock>
         </StackPanel>
         <Slider Name="ScalarSlider" Value="1" Visibility="Collapsed"/>
         <Slider Name="RotationSlider" Value="0" Visibility="Collapsed"/>
