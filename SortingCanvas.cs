@@ -40,8 +40,8 @@
                 listA[i] = random.NextDouble() * this.Height;
                 listB[i] = listA[i];
             }
-            //TopDownSplitMerge(listB, 0, list_length, listA);
-            MottomUpMergeSort(listA, listB, list_length);
+            TopDownSplitMerge(listB, 0, list_length, listA);
+            //MottomUpMergeSort(listA, listB, list_length);
 
             Int32Animation frameAnimation = new Int32Animation();
             frameAnimation.From = 0;
@@ -62,6 +62,7 @@
                 if(last > l) {
                     throw new Exception(string.Format("Sorting failed {0} should be less than or equal to {1}", last, l));
                 }
+                last = l;
             }
         }
 
