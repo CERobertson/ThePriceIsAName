@@ -114,7 +114,7 @@
 
         private void SortingCanvas_Loaded(object sender, RoutedEventArgs e) {
             for (int i = 0; i < list_length; i++) {
-                listA[i] = random.NextDouble() * this.Height;
+                listA[i] = random.NextDouble() * this.ActualHeight;
                 listB[i] = listA[i];
             }
 

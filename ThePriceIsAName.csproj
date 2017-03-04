@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BadukCanvas.cs" />
+    <Compile Include="BadukPage.xaml.cs">
+      <DependentUpon>BadukPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HealthBar.cs" />
     <Compile Include="HealthBarPage.xaml.cs">
       <DependentUpon>HealthBarPage.xaml</DependentUpon>
@@ -86,6 +90,10 @@
       <DependentUpon>TranslatablePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="BadukPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HealthBarPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
