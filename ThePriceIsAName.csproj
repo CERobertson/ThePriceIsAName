@@ -58,6 +58,7 @@
     <Compile Include="BadukPage.xaml.cs">
       <DependentUpon>BadukPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="HealthBar.cs" />
     <Compile Include="HealthBarPage.xaml.cs">
       <DependentUpon>HealthBarPage.xaml</DependentUpon>

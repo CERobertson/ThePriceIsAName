@@ -7,6 +7,6 @@
       Title="BadukPage">
 
     <Grid>
-        <l:BadukCanvas/>
+        <l:BadukCanvas  Width="900" Height="250"/>
     </Grid>
 </Page>

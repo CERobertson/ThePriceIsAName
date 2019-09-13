@@ -57,9 +57,10 @@
 
             DoubleAnimation dimensionAnimation = new DoubleAnimation();
             dimensionAnimation.From = 0;
-            dimensionAnimation.To = 200;
+            dimensionAnimation.To = 400;
             dimensionAnimation.AutoReverse = true;
-            dimensionAnimation.Duration = TimeSpan.FromHours(1);
+            dimensionAnimation.Duration = TimeSpan.FromMinutes(10);
+            dimensionAnimation.RepeatBehavior = RepeatBehavior.Forever;
             this.BeginAnimation(PolarMultiplicationCanvas.DimensionProperty, dimensionAnimation);
         }
         public PolarMultiplicationCanvas()
@@ -78,7 +79,7 @@
             var center = new Point(0, 0);
             //var center2 = new Point((this.Width / 2) + this.Radius, (this.Height / 2) + this.Radius);
 
-            var background = Brushes.Transparent;
+            var background = Brushes.Black;
             //var gradient = new LinearGradientBrush(Colors.DarkBlue, Colors.DarkMagenta, 45);
             var gradient = new LinearGradientBrush(new GradientStopCollection(new[] { new GradientStop(Colors.DarkMagenta, 0.0), new GradientStop(Colors.DarkBlue, .25), new GradientStop(Colors.DarkMagenta, 0.75) }));
             var pen = new Pen(gradient, 1);

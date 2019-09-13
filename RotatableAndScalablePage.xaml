@@ -6,7 +6,7 @@
         MouseUp="Page_PreviewMouseUp"
         MouseWheel="Page_PreviewMouseWheel"
         Title="RotatableAndScalablePage"
-        ShowsNavigationUI="False">
+        ShowsNavigationUI="False" Background="Gray">
     <Grid>
         <StackPanel>
             <TextBlock><Hyperlink NavigateUri="PolarMultiplicationPage.xaml" TargetName="World">Polar Multiplication</Hyperlink></TextBlock>

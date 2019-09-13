@@ -2,7 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       KeyDown="Page_KeyDown"
-	Title="TranslatablePage">
+	  Title="TranslatablePage"
+      >
     <Grid>
         <Slider Name="TranslateXSlider" Value="0" Visibility="Collapsed"/>
         <Slider Name="TranslateYSlider" Value="0" Visibility="Collapsed"/>
