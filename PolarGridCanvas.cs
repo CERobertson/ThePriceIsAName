@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace ThePriceIsAName
 {
-    /// <summary>
-    /// Interaction logic for PolarGridCanvas.xaml
-    /// </summary>
     public partial class PolarGridCanvas : Canvas
     {
         public double Radius
